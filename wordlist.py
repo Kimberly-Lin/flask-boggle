@@ -39,6 +39,11 @@ class WordList:
             False
              
         """
+        #check for lowercase words too 'cat' because of its before
+
+        #communicate clearly how your function should work, use random word to explain the purpose of test 
+
+        #think more of type string bool, num, etc...
 
         return word in self.words
 
