@@ -33,12 +33,12 @@ def new_game():
 def scoring():
     """For existing game, check if word is legal and score it"""
     #need to parse out JSON form-data for game_id and word
-    req = request.form[]
-    return req.json
-
-    # curr_game= games[game_id]
-    # if not curr_game.is_word_in_wordlist(word):
-    #     return jsonify({"result": "not word"})
-    # if not curr_game.check_word_on_board(word):
-    #     return jsonify({"result": "not-on-board"})
-    # return jsonify({"result": "ok"})
+    curr_game_id = request.json["game_id"]
+    word = request.json["word"]
+    curr_game = games[curr_game_id]
+   
+    if not curr_game.is_word_in_word_list(word):
+        return jsonify({"result": "not word"})
+    if not curr_game.check_word_on_board(word):
+        return jsonify({"result": "not-on-board"})
+    return jsonify({"result": "ok"})

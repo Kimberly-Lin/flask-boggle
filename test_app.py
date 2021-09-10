@@ -48,3 +48,13 @@ class BoggleAppTestCase(TestCase):
             self.assertTrue(type(response_game_board), list)
             self.assertIn(response_game_id, games)
     
+    def test_api_score_word(self): 
+        """Test to see if words are scored properly"""
+
+        with self.client as client:
+            client.post("/api/new-game")
+            response = client.post("/api/score-word", data={"word", "game_id": games} )
+            response_data = response.get_json()
+            # response_game_id= response_data["game_id"]
+            # response_game_word= response_data["word"]
+    
