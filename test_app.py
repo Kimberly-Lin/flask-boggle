@@ -52,9 +52,16 @@ class BoggleAppTestCase(TestCase):
         """Test to see if words are scored properly"""
 
         with self.client as client:
-            client.post("/api/new-game")
-            response = client.post("/api/score-word", data={"word", "game_id": games} )
-            response_data = response.get_json()
+            #this will give us games, also returns JSON of "game_id" & "board"
+            game = client.post("/api/new-game").get_json()
+            game_id=game["game_id"]
+            
+            #post request to score-word will need input of JSON with "word", "game_id"
+            response = client.post("/api/score-word", json={"game_id": game_id, "word" : "apple"})
+            breakpoint()
+            games[game_id].board= [["Z", "A", "N", "T", "P"], ["K", "T", "E", "T", "U"], ["E", "S", "U", "N", "A"], ["A", "E", "J", "Y", "A"], ["E", "G", "A", "P", "N"]]
+            breakpoint()
+            
             # response_game_id= response_data["game_id"]
             # response_game_word= response_data["word"]
     
